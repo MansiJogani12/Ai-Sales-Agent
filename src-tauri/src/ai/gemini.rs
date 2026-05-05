@@ -399,10 +399,10 @@ fn get_mock_trainer_response(req: &ObjectionTrainerRequest) -> ObjectionTrainerR
     let msg_count = req.messages.len();
 
     if req.mode == "score" || msg_count >= 5 {
-        let score = match req.difficulty.as_str() {
+        let score: i32 = match req.difficulty.as_str() {
             "easy" => 82, "hard" => 58, _ => 72
         };
-        ObjectionTrainerResponse {
+        return ObjectionTrainerResponse {
             role: "ai_prospect".into(),
             text: "Alright, you've made your case. Let me think about it.".into(),
             is_complete: true,
@@ -424,10 +424,10 @@ fn get_mock_trainer_response(req: &ObjectionTrainerRequest) -> ObjectionTrainerR
                     false => "Try the 'feel-felt-found' technique: 'I understand how you feel. Others have felt the same way. What they found was...'".into(),
                 }
             },
-        }
+        };
     }
 
-    let response_texts = match req.difficulty.as_str() {
+    let response_texts: [&str; 3] = match req.difficulty.as_str() {
         "easy" => [
             "Alright, I'm listening. What makes you different from what we're already doing?",
             "That's a fair point. Can you give me a specific example of how that would work for us?",
