@@ -40,6 +40,7 @@ export function ObjectionTrainer({ icp }: ObjectionTrainerProps) {
   const [scoreResult, setScoreResult] = useState<ScoreResult | null>(null);
   const [selectedObjection, setSelectedObjection] = useState("");
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("medium");
+  const [encouragement, setEncouragement] = useState<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const icpObjections = icp?.objections || [
@@ -98,6 +99,14 @@ export function ObjectionTrainer({ icp }: ObjectionTrainerProps) {
     setMessages(prev => [...prev, userMsg]);
     setUserInput("");
     setIsLoading(true);
+
+    const reply = userMsg.text.toLowerCase();
+    if (reply.length > 60) setEncouragement("Great detail — that's how you build credibility");
+    else if (reply.includes("understand") || reply.includes("hear you")) setEncouragement("Excellent — acknowledging the prospect's concern first");
+    else if (reply.includes(" ROI ") || reply.includes("cost") || reply.includes("save")) setEncouragement("Smart move — quantifying the value");
+    else if (reply.includes("?")) setEncouragement("Good — keeping the conversation going with questions");
+    else setEncouragement("Keep going — you're building momentum");
+    setTimeout(() => setEncouragement(null), 3000);
 
     if (messages.length >= 5) {
       await generateScore([...messages, userMsg]);
@@ -266,11 +275,16 @@ export function ObjectionTrainer({ icp }: ObjectionTrainerProps) {
       {mode === "sparring" && (
         <div className="flex flex-col flex-1 animate-fade-in">
           {/* Objection Badge */}
-          <div className="bg-[var(--accent-coral-light)] border border-[var(--accent-coral-medium)] rounded-xl px-4 py-2.5 mb-4 text-xs text-[var(--accent-coral)] flex items-center gap-2 font-bold">
+          <div className="bg-[var(--accent-coral-light)] border border-[var(--accent-coral-medium)] rounded-xl px-4 py-2.5 mb-2 text-xs text-[var(--accent-coral)] flex items-center gap-2 font-bold">
             <Swords className="w-3.5 h-3.5" />
             <span>Active Objection:</span> "{selectedObjection}"
             <span className="ml-auto text-[var(--text-muted)] font-mono">{Math.ceil(messages.length / 2)}/3 rounds</span>
           </div>
+          {encouragement && (
+            <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-2.5 mb-4 text-xs text-emerald-700 flex items-center gap-2 font-bold animate-slide-in-down">
+              💬 {encouragement}
+            </div>
+          )}
 
           {/* Chat */}
           <div className="flex-1 card rounded-2xl p-5 overflow-y-auto mb-4 space-y-4 min-h-[300px]">

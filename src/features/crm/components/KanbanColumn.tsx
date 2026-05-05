@@ -30,12 +30,15 @@ export function KanbanColumn({
   onViewDetails,
 }: KanbanColumnProps) {
   const style = STATUS_STYLE[status] || { dot: "bg-gray-400", text: "text-gray-600", bg: "bg-surface-bg/50" };
+  const [isOver, setIsOver] = React.useState(false);
 
   return (
     <div
       className="flex flex-col w-80 shrink-0 h-full"
-      onDrop={(e) => onDrop(e, status)}
+      onDrop={(e) => { setIsOver(false); onDrop(e, status); }}
       onDragOver={onDragOver}
+      onDragEnter={(e) => { e.preventDefault(); setIsOver(true); }}
+      onDragLeave={() => setIsOver(false)}
     >
       <div className="flex items-center justify-between mb-4 px-2">
         <h2 className={`text-[12px] font-bold uppercase tracking-[0.12em] ${style.text} flex items-center gap-2.5`}>
@@ -47,7 +50,7 @@ export function KanbanColumn({
         </span>
       </div>
 
-      <div className={`flex-1 overflow-y-auto pb-6 flex flex-col gap-3.5 min-h-[200px] rounded-2xl border border-transparent hover:border-surface-border transition-all p-2 stagger-children custom-scrollbar ${style.bg}`}>
+      <div className={`flex-1 overflow-y-auto pb-6 flex flex-col gap-3.5 min-h-[200px] rounded-2xl border ${isOver ? 'border-coral/50 shadow-[inset_0_0_0_2px_rgba(255,92,57,0.1)]' : 'border-transparent hover:border-surface-border'} transition-all duration-200 p-2 stagger-children custom-scrollbar ${style.bg}`}>
         {leads.map((lead) => (
           <LeadCard
             key={lead.id}

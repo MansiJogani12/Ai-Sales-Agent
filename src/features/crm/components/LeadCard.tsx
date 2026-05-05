@@ -22,7 +22,7 @@ export function LeadCard({ lead, onDragStart, onDial, onViewDetails }: LeadCardP
     <div
       draggable
       onDragStart={(e) => onDragStart(e, lead.id)}
-      className="card card-hover p-4 cursor-grab active:cursor-grabbing group animate-fade-in"
+      className="card card-hover p-4 cursor-grab active:cursor-grabbing group animate-fade-in kanban-card"
     >
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3 min-w-0 flex-1">

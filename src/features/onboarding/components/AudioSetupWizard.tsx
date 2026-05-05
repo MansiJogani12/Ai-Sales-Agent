@@ -128,9 +128,9 @@ export function AudioSetupWizard({ onComplete }: AudioSetupWizardProps) {
               <div className="flex gap-4 mt-auto justify-end">
                 <button 
                   onClick={handleSkip}
-                  className="px-6 py-3 rounded-xl text-gray-500 hover:text-white transition-colors text-sm font-medium hover:bg-white/5"
+                  className="px-8 py-4 bg-white/10 text-white hover:bg-white/20 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 border border-white/20"
                 >
-                  Skip (VoIP Only)
+                  Skip — Use VoIP Only <ArrowRight className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={() => setStep(2)}
@@ -183,6 +183,12 @@ export function AudioSetupWizard({ onComplete }: AudioSetupWizardProps) {
               </div>
 
               <div className="flex gap-4 mt-auto justify-end">
+                <button 
+                  onClick={handleSkip}
+                  className="px-6 py-3 rounded-xl text-gray-400 hover:text-white transition-colors text-sm font-medium hover:bg-white/5"
+                >
+                  Skip this step
+                </button>
                 <button 
                   onClick={() => setStep(1)}
                   className="px-6 py-3 rounded-xl text-gray-500 hover:text-white transition-colors text-sm font-medium hover:bg-white/5"
@@ -284,6 +290,12 @@ export function AudioSetupWizard({ onComplete }: AudioSetupWizardProps) {
 
               <div className="flex gap-4 mt-auto justify-end">
                 <button 
+                  onClick={handleSkip}
+                  className="px-6 py-3 rounded-xl text-gray-400 hover:text-white transition-colors text-sm font-medium hover:bg-white/5"
+                >
+                  Skip
+                </button>
+                <button 
                   onClick={() => setStep(2)}
                   className="px-6 py-3 rounded-xl text-gray-500 hover:text-white transition-colors text-sm font-medium hover:bg-white/5"
                 >
@@ -291,8 +303,7 @@ export function AudioSetupWizard({ onComplete }: AudioSetupWizardProps) {
                 </button>
                 <button 
                   onClick={handleFinish}
-                  disabled={!permissionGranted}
-                  className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-emerald-950 disabled:opacity-40 disabled:cursor-not-allowed hover:from-emerald-400 hover:to-teal-400 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:scale-105 active:scale-95"
+                  className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-emerald-950 hover:from-emerald-400 hover:to-teal-400 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:scale-105 active:scale-95"
                 >
                   <Sparkles className="w-4 h-4" /> Finalize Configuration
                 </button>

@@ -32,9 +32,10 @@ interface DashboardHomeProps {
   onViewLead: (lead: Lead) => void;
   onDial: (lead: Lead) => void;
   onNavigate: (page: string) => void;
+  addToast?: (type: "success" | "error" | "info" | "warning", message: string) => void;
 }
 
-export function DashboardHome({ leads, callLogs, onViewLead: _onViewLead, onDial: _onDial, onNavigate }: DashboardHomeProps) {
+export function DashboardHome({ leads, callLogs, onViewLead: _onViewLead, onDial: _onDial, onNavigate, addToast }: DashboardHomeProps) {
   // Stats
   const outbound = leads.filter(l => l.status === "Outbound Call").length;
   const closed = leads.filter(l => l.status === "Closed").length;
@@ -125,6 +126,7 @@ export function DashboardHome({ leads, callLogs, onViewLead: _onViewLead, onDial
                   const a = document.createElement("a");
                   a.href = url; a.download = "opencloser_leads.csv"; a.click();
                   URL.revokeObjectURL(url);
+                  addToast?.("success", "Leads exported as CSV");
                 }}
                 className="flex-1 bg-white border border-[#E0E0E0] text-[#171717] rounded-full py-3 text-[14px] font-semibold flex items-center justify-center gap-2 hover:bg-[#F4F5F7] transition-colors">
                 <ArrowDownToLine className="w-4 h-4" /> Export
