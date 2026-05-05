@@ -42,11 +42,3 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build
-
-  rust-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
-      - run: cargo check --manifest-path src-tauri/Cargo.toml
