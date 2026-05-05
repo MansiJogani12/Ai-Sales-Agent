@@ -17,6 +17,25 @@ export function SettingsView() {
   // API Keys
   const [apiKeys, setApiKeys] = useState<Record<string, string>>({});
   const [showKeys, setShowKeys] = useState<Record<string, boolean>>({});
+  const [testing, setTesting] = useState<Record<string, boolean>>({});
+  const [testResults, setTestResults] = useState<Record<string, string | null>>({});
+
+  const testConnection = async (providerId: string, storageKey: string) => {
+    setTesting(prev => ({ ...prev, [providerId]: true }));
+    setTestResults(prev => ({ ...prev, [providerId]: null }));
+    try {
+      const { invoke } = await import("@tauri-apps/api/core");
+      await invoke("simulate_lead_scraping", {
+        query: "test", location: "test", icp: null,
+        apiKey: apiKeys[storageKey] || undefined,
+      });
+      setTestResults(prev => ({ ...prev, [providerId]: "connected" }));
+    } catch {
+      setTestResults(prev => ({ ...prev, [providerId]: "failed" }));
+    } finally {
+      setTesting(prev => ({ ...prev, [providerId]: false }));
+    }
+  };
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ audio: true })
@@ -166,6 +185,27 @@ export function SettingsView() {
                       </div>
                     </div>
                   ))}
+
+                  {/* Test Connection */}
+                  <div className="flex items-center gap-3 pt-2">
+                    <button
+                      onClick={() => testConnection(provider.id, provider.apiKeySettingKey)}
+                      disabled={!hasKey(provider.apiKeySettingKey) || testing[provider.id]}
+                      className="text-[11px] font-bold px-4 py-2 rounded-xl border border-surface-border bg-white hover:bg-surface-bg transition-smooth disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {testing[provider.id] ? "Testing..." : "Test Connection"}
+                    </button>
+                    {testResults[provider.id] === "connected" && (
+                      <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+                        <CheckCheck className="w-3.5 h-3.5" /> Connected
+                      </span>
+                    )}
+                    {testResults[provider.id] === "failed" && (
+                      <span className="text-[11px] font-bold text-red-500 flex items-center gap-1">
+                        <AlertTriangle className="w-3.5 h-3.5" /> Failed — check key
+                      </span>
+                    )}
+                  </div>
 
                   {!provider.requiresRelay && (
                     <p className="text-[11px] text-emerald-600 font-medium flex items-center gap-1.5">

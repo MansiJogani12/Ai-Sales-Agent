@@ -1,5 +1,18 @@
 mod db;
 mod ai;
+mod relay;
+
+use std::sync::Mutex;
+use tauri::Manager;
+
+struct RelayState {
+    port: u16,
+}
+
+#[tauri::command]
+fn get_relay_port(state: tauri::State<Mutex<RelayState>>) -> u16 {
+    state.lock().unwrap().port
+}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -14,12 +27,15 @@ pub fn run() {
                 )?;
             }
             
-            // Load environment variables for local dev
             dotenvy::from_path("../.env").ok();
-            
-            // Initialize Database Schema
             db::schema::init(app.handle());
-            
+
+            // Start voice relay server for OpenAI/ElevenLabs
+            let relay_port = tauri::async_runtime::block_on(relay::start_relay_server())
+                .unwrap_or(0);
+            app.manage(Mutex::new(RelayState { port: relay_port }));
+            log::info!("Voice relay available on port {}", relay_port);
+
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
@@ -35,7 +51,8 @@ pub fn run() {
             ai::gemini::simulate_lead_scraping,
             ai::gemini::process_onboarding_chat,
             ai::gemini::analyze_call_transcript,
-            ai::gemini::objection_trainer_turn
+            ai::gemini::objection_trainer_turn,
+            get_relay_port
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

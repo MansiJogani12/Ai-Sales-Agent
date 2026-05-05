@@ -19,8 +19,12 @@ pub async fn simulate_lead_scraping(
     query: String,
     location: String,
     icp: Option<Value>,
+    api_key: Option<String>,
 ) -> Result<Vec<LeadSimulation>, String> {
-    let api_key = env::var("GEMINI_API_KEY").unwrap_or_default();
+    let api_key = api_key
+        .filter(|k| !k.is_empty() && k != "MY_GEMINI_API_KEY")
+        .or_else(|| env::var("GEMINI_API_KEY").ok())
+        .unwrap_or_default();
     if api_key.is_empty() || api_key == "MY_GEMINI_API_KEY" {
         return Ok(get_mock_leads(&query, &location));
     }
@@ -137,8 +141,11 @@ pub struct IcpResponseData {
 }
 
 #[tauri::command]
-pub async fn process_onboarding_chat(messages: Vec<Value>) -> Result<IcpResponseData, String> {
-    let api_key = env::var("GEMINI_API_KEY").unwrap_or_default();
+pub async fn process_onboarding_chat(messages: Vec<Value>, api_key: Option<String>) -> Result<IcpResponseData, String> {
+    let api_key = api_key
+        .filter(|k| !k.is_empty() && k != "MY_GEMINI_API_KEY")
+        .or_else(|| env::var("GEMINI_API_KEY").ok())
+        .unwrap_or_default();
     if api_key.is_empty() || api_key == "MY_GEMINI_API_KEY" {
         if messages.len() > 3 {
             let mock_icp = json!({
@@ -238,8 +245,12 @@ pub async fn analyze_call_transcript(
     lead_name: String,
     lead_company: String,
     icp: Option<String>,
+    api_key: Option<String>,
 ) -> Result<Value, String> {
-    let api_key = env::var("GEMINI_API_KEY").unwrap_or_default();
+    let api_key = api_key
+        .filter(|k| !k.is_empty() && k != "MY_GEMINI_API_KEY")
+        .or_else(|| env::var("GEMINI_API_KEY").ok())
+        .unwrap_or_default();
     if api_key.is_empty() || api_key == "MY_GEMINI_API_KEY" {
         return Ok(get_dynamic_mock_debrief(&transcript, &lead_name, &lead_company));
     }
@@ -329,6 +340,7 @@ pub struct ObjectionTrainerRequest {
     pub difficulty: String,
     pub messages: Vec<Value>,
     pub icp: Option<Value>,
+    pub api_key: Option<String>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -344,7 +356,10 @@ pub struct ObjectionTrainerResponse {
 
 #[tauri::command]
 pub async fn objection_trainer_turn(req: ObjectionTrainerRequest) -> Result<ObjectionTrainerResponse, String> {
-    let api_key = env::var("GEMINI_API_KEY").unwrap_or_default();
+    let api_key = req.api_key
+        .filter(|k| !k.is_empty() && k != "MY_GEMINI_API_KEY")
+        .or_else(|| env::var("GEMINI_API_KEY").ok())
+        .unwrap_or_default();
     if api_key.is_empty() || api_key == "MY_GEMINI_API_KEY" {
         return Ok(get_mock_trainer_response(&req));
     }

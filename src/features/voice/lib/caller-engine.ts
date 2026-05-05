@@ -164,7 +164,7 @@ export class GeminiCallerEngine extends CallerEngine {
 }
 
 // ── OPENAI REALTIME ENGINE ──────────────────────────────────
-// Routes through /api/relay?provider=openai (server-side WS proxy)
+// Routes through local Tauri WebSocket relay on 127.0.0.1
 export class OpenAICallerEngine extends CallerEngine {
   private ws: WebSocket | null = null;
 
@@ -174,16 +174,17 @@ export class OpenAICallerEngine extends CallerEngine {
     const apiKey = localStorage.getItem("openai_api_key") || "";
     if (!apiKey) throw new Error("OpenAI API key not configured. Go to Settings → Voice Engine.");
 
-    const wsUrl = `ws://${window.location.host}/api/relay?provider=openai`;
+    const { invoke } = await import("@tauri-apps/api/core");
+    const port: number = await invoke("get_relay_port");
+    const wsUrl = `ws://127.0.0.1:${port}?provider=openai`;
     this.ws = new WebSocket(wsUrl);
 
     return new Promise((resolve, reject) => {
       this.ws!.binaryType = "arraybuffer";
 
       this.ws!.onopen = () => {
-        // Send init message with API key + config
         this.ws!.send(JSON.stringify({
-          type: "init",
+          provider: "openai",
           apiKey,
           model: "gpt-4o-realtime-preview",
           voice: voiceId,
@@ -258,14 +259,21 @@ export class ElevenLabsCallerEngine extends CallerEngine {
     const agentId = localStorage.getItem("elevenlabs_agent_id") || "";
     if (!apiKey || !agentId) throw new Error("ElevenLabs API key and Agent ID required. Go to Settings → Voice Engine.");
 
-    const wsUrl = `ws://${window.location.host}/api/relay?provider=elevenlabs`;
+    const { invoke } = await import("@tauri-apps/api/core");
+    const port: number = await invoke("get_relay_port");
+    const wsUrl = `ws://127.0.0.1:${port}?provider=elevenlabs`;
     this.ws = new WebSocket(wsUrl);
 
     return new Promise((resolve, reject) => {
       this.ws!.binaryType = "arraybuffer";
 
       this.ws!.onopen = () => {
-        this.ws!.send(JSON.stringify({ type: "init", apiKey, agentId, systemPrompt }));
+        this.ws!.send(JSON.stringify({
+          provider: "elevenlabs",
+          apiKey,
+          agentId,
+          systemPrompt,
+        }));
       };
 
       this.ws!.onmessage = (e) => {

@@ -1,6 +1,11 @@
 import { invoke } from "@tauri-apps/api/core";
 import type { ICP } from "../types";
 
+function getGeminiKey(): string | undefined {
+  const key = localStorage.getItem("gemini_api_key");
+  return key || undefined;
+}
+
 export interface LeadResult {
   name: string;
   company: string;
@@ -26,7 +31,7 @@ export async function simulateLeadScraping(
   location: string,
   icp: ICP | null
 ): Promise<LeadResult[]> {
-  return invoke("simulate_lead_scraping", { query, location, icp });
+  return invoke("simulate_lead_scraping", { query, location, icp, apiKey: getGeminiKey() });
 }
 
 export async function analyzeCallTranscript(
@@ -40,6 +45,7 @@ export async function analyzeCallTranscript(
     leadName,
     leadCompany,
     icp,
+    apiKey: getGeminiKey(),
   });
 }
 
@@ -60,5 +66,5 @@ export async function objectionTrainerTurn(req: {
   messages: { role: string; text: string }[];
   icp: any;
 }): Promise<ObjectionTrainerResponse> {
-  return invoke("objection_trainer_turn", { req });
+  return invoke("objection_trainer_turn", { req: { ...req, apiKey: getGeminiKey() } });
 }
