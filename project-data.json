@@ -1,0 +1,430 @@
+{
+  "github_optimization": {
+    "repository_settings": {
+      "name": "OpenCloser",
+      "description": "Your complete AI sales team that runs 100% offline. Local CRM, voice calling, lead research, and sales coaching - all powered by AI. Built with Tauri, React & Rust.",
+      "website": "https://opencloser.dev",
+      "topics": [
+        "sales-automation",
+        "ai-crm",
+        "voice-ai",
+        "lead-generation",
+        "desktop-app",
+        "tauri",
+        "tauri-app",
+        "rust",
+        "react",
+        "typescript",
+        "offline-first",
+        "local-ai",
+        "sales-tools",
+        "b2b",
+        "ai-agents",
+        "voice-calling",
+        "sales-engagement",
+        "sqlite",
+        "gemini",
+        "open-source"
+      ]
+    },
+    "readme_structure": {
+      "sections": [
+        {
+          "name": "hero",
+          "type": "image",
+          "content": "./assets/hero-banner.png",
+          "alt": "OpenCloser - AI Sales Team Platform",
+          "priority": 1
+        },
+        {
+          "name": "headline",
+          "type": "text",
+          "content": "Your AI Sales Team That Runs 100% Offline",
+          "priority": 2
+        },
+        {
+          "name": "subheadline",
+          "type": "text",
+          "content": "Local CRM • Voice AI • Lead Research • Sales Coaching",
+          "priority": 3
+        },
+        {
+          "name": "badges",
+          "type": "badges",
+          "badges": [
+            {
+              "label": "release",
+              "url": "https://github.com/opencloser/opencloser/releases",
+              "shield": "https://img.shields.io/github/v/release/opencloser/opencloser?color=369eff&labelColor=black&logo=github&style=flat-square"
+            },
+            {
+              "label": "license",
+              "url": "LICENSE",
+              "shield": "https://img.shields.io/badge/license-MIT-white?labelColor=black&style=flat-square"
+            },
+            {
+              "label": "build",
+              "url": "https://github.com/opencloser/opencloser/actions",
+              "shield": "https://img.shields.io/github/actions/workflow/status/opencloser/opencloser/ci.yml?labelColor=black&logo=githubactions&style=flat-square"
+            },
+            {
+              "label": "discord",
+              "url": "https://discord.gg/opencloser",
+              "shield": "https://img.shields.io/discord/123456789?color=5865F2&label=discord&labelColor=black&logo=discord&style=flat-square"
+            },
+            {
+              "label": "stars",
+              "url": "https://github.com/opencloser/opencloser/stargazers",
+              "shield": "https://img.shields.io/github/stars/opencloser/opencloser?color=ffcb47&labelColor=black&style=flat-square"
+            },
+            {
+              "label": "contributors",
+              "url": "https://github.com/opencloser/opencloser/graphs/contributors",
+              "shield": "https://img.shields.io/github/contributors/opencloser/opencloser?color=c4f042&labelColor=black&style=flat-square"
+            }
+          ],
+          "priority": 4
+        },
+        {
+          "name": "demo",
+          "type": "gif",
+          "content": "./assets/demo.gif",
+          "alt": "OpenCloser Demo - AI Voice Calling and CRM",
+          "priority": 5
+        },
+        {
+          "name": "quick_install",
+          "type": "download_table",
+          "platforms": [
+            {
+              "name": "Windows",
+              "download_url": "https://github.com/opencloser/opencloser/releases/latest/download/opencloser-windows-x64.exe",
+              "badge": "https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white"
+            },
+            {
+              "name": "macOS",
+              "download_url": "https://github.com/opencloser/opencloser/releases/latest/download/opencloser-macos-universal.dmg",
+              "badge": "https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white"
+            },
+            {
+              "name": "Linux",
+              "download_url": "https://github.com/opencloser/opencloser/releases/latest/download/opencloser-linux-x86_64.AppImage",
+              "badge": "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"
+            }
+          ],
+          "priority": 6
+        },
+        {
+          "name": "what_is",
+          "type": "markdown",
+          "title": "## What is OpenCloser?",
+          "content": "OpenCloser is an open source AI sales automation platform that runs entirely on your desktop. Built with Tauri and Rust, it provides a complete sales team - lead researcher, voice caller, and sales coach - with all data stored locally in SQLite.",
+          "priority": 7
+        },
+        {
+          "name": "features",
+          "type": "feature_grid",
+          "title": "## ✨ Features",
+          "features": [
+            {
+              "icon": "🎯",
+              "title": "AI Strategist",
+              "description": "Automatically researches leads and creates personalized outreach strategies based on ICP matching."
+            },
+            {
+              "icon": "🔍",
+              "title": "Lead Hunter",
+              "description": "AI-powered lead discovery and enrichment. Find decision-makers with contact info automatically."
+            },
+            {
+              "icon": "📞",
+              "title": "Voice Caller",
+              "description": "Make AI-powered sales calls with natural voice synthesis and real-time objection handling."
+            },
+            {
+              "icon": "📊",
+              "title": "War Room",
+              "description": "Real-time call monitoring and coaching dashboard for sales managers."
+            },
+            {
+              "icon": "🤖",
+              "title": "AI Coach",
+              "description": "Get real-time guidance during calls and post-call debriefs with improvement suggestions."
+            },
+            {
+              "icon": "📈",
+              "title": "Analytics",
+              "description": "Track conversion rates, call outcomes, and team performance - all locally stored."
+            }
+          ],
+          "priority": 8
+        },
+        {
+          "name": "why_opensource",
+          "type": "markdown",
+          "title": "## 🔒 Privacy First",
+          "content": "Unlike cloud-based CRMs, OpenCloser keeps all your data on your machine. Your leads, call recordings, and sales data never leave your computer unless you choose to export them.",
+          "priority": 9
+        },
+        {
+          "name": "tech_stack",
+          "type": "tech_grid",
+          "title": "## 🛠 Tech Stack",
+          "technologies": [
+            {
+              "name": "Tauri 2.0",
+              "description": "Rust-powered desktop framework",
+              "badge": "https://img.shields.io/badge/Tauri-2.0-FFC131?logo=tauri&logoColor=black"
+            },
+            {
+              "name": "React 19",
+              "description": "Modern UI with TypeScript",
+              "badge": "https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black"
+            },
+            {
+              "name": "Rust",
+              "description": "High-performance backend",
+              "badge": "https://img.shields.io/badge/Rust-1.85-000000?logo=rust&logoColor=white"
+            },
+            {
+              "name": "SQLite",
+              "description": "Local database storage",
+              "badge": "https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white"
+            },
+            {
+              "name": "Gemini",
+              "description": "Google AI integration",
+              "badge": "https://img.shields.io/badge/Gemini-2.5-4285F4?logo=google&logoColor=white"
+            },
+            {
+              "name": "Tailwind",
+              "description": "Modern styling",
+              "badge": "https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white"
+            }
+          ],
+          "priority": 10
+        },
+        {
+          "name": "quick_start",
+          "type": "code_block",
+          "title": "## 🚀 Quick Start",
+          "steps": [
+            {
+              "command": "Download the latest release for your platform",
+              "code": null
+            },
+            {
+              "command": "Run the installer and launch OpenCloser",
+              "code": null
+            },
+            {
+              "command": "Add your Gemini API key (optional - runs in demo mode without)",
+              "code": null
+            }
+          ],
+          "priority": 11
+        },
+        {
+          "name": "documentation",
+          "type": "links",
+          "title": "## 📚 Documentation",
+          "links": [
+            {
+              "text": "Installation Guide",
+              "url": "https://docs.opencloser.dev/installation"
+            },
+            {
+              "text": "User Manual",
+              "url": "https://docs.opencloser.dev/guide"
+            },
+            {
+              "text": "API Reference",
+              "url": "https://docs.opencloser.dev/api"
+            },
+            {
+              "text": "Contributing",
+              "url": "CONTRIBUTING.md"
+            }
+          ],
+          "priority": 12
+        },
+        {
+          "name": "community",
+          "type": "links",
+          "title": "## 🤝 Community",
+          "links": [
+            {
+              "text": "Discord",
+              "url": "https://discord.gg/opencloser"
+            },
+            {
+              "text": "GitHub Discussions",
+              "url": "https://github.com/opencloser/opencloser/discussions"
+            },
+            {
+              "text": "Twitter/X",
+              "url": "https://x.com/opencloser"
+            }
+          ],
+          "priority": 13
+        },
+        {
+          "name": "license",
+          "type": "text",
+          "title": "## 📄 License",
+          "content": "MIT License - See [LICENSE](LICENSE) for details.",
+          "priority": 14
+        }
+      ]
+    }
+  },
+  "seo_keywords": {
+    "primary": [
+      "sales automation",
+      "crm software",
+      "ai sales assistant",
+      "voice ai",
+      "lead generation",
+      "sales engagement"
+    ],
+    "secondary": [
+      "local crm",
+      "offline sales tools",
+      "ai cold calling",
+      "sales outreach automation",
+      "tauri desktop app",
+      "rust crm"
+    ],
+    "long_tail": [
+      "open source sales engagement platform",
+      "self-hosted crm with ai",
+      "local ai sales assistant",
+      "offline sales dialer software"
+    ],
+    "technology": [
+      "tauri app",
+      "react desktop",
+      "rust sqlite",
+      "gemini ai",
+      "local llm"
+    ]
+  },
+  "competitor_benchmarks": {
+    "top_repos": [
+      {
+        "name": "VSCode",
+        "stars": 185000,
+        "key_strategy": "Community focus, extensive docs"
+      },
+      {
+        "name": "Tauri",
+        "stars": 106000,
+        "key_strategy": "Visual appeal, platform matrix"
+      },
+      {
+        "name": "Ollama",
+        "stars": 171000,
+        "key_strategy": "Developer simplicity, ecosystem"
+      },
+      {
+        "name": "Jan",
+        "stars": 42400,
+        "key_strategy": "Privacy-first messaging"
+      },
+      {
+        "name": "LobeHub",
+        "stars": 76000,
+        "key_strategy": "Social proof, viral sharing"
+      }
+    ],
+    "common_patterns": [
+      "Hero banner with logo",
+      "Clear value proposition in 3 seconds",
+      "Multiple download options per platform",
+      "Demo GIF showing actual usage",
+      "Strong community/social links",
+      "Badge rows for credibility"
+    ]
+  },
+  "success_metrics": {
+    "targets": {
+      "30_days": {
+        "stars": 500,
+        "forks": 50,
+        "contributors": 5,
+        "releases": 2,
+        "closed_issues": 10
+      },
+      "90_days": {
+        "stars": 2000,
+        "forks": 200,
+        "contributors": 20,
+        "releases": 6,
+        "closed_issues": 50
+      }
+    },
+    "kpis": [
+      "Star velocity (stars/day)",
+      "Fork rate (% of starrers)",
+      "Issue response time (<48h)",
+      "PR merge rate",
+      "Release downloads",
+      "Profile view → star conversion"
+    ]
+  },
+  "assets_needed": {
+    "images": [
+      {
+        "filename": "hero-banner.png",
+        "dimensions": "1200x630",
+        "purpose": "README hero image"
+      },
+      {
+        "filename": "social-preview.png",
+        "dimensions": "1280x640",
+        "purpose": "GitHub social preview"
+      },
+      {
+        "filename": "demo.gif",
+        "dimensions": "1280x720",
+        "purpose": "Demo animation for README"
+      },
+      {
+        "filename": "logo-dark.svg",
+        "dimensions": "vector",
+        "purpose": "Dark mode logo"
+      },
+      {
+        "filename": "logo-light.svg",
+        "dimensions": "vector",
+        "purpose": "Light mode logo"
+      }
+    ],
+    "screenshots": [
+      "main-dashboard.png",
+      "voice-call-interface.png",
+      "lead-research-view.png",
+      "analytics-dashboard.png",
+      "war-room-view.png"
+    ]
+  },
+  "repository_files": {
+    "required": [
+      "README.md",
+      "LICENSE",
+      "CONTRIBUTING.md",
+      "CODE_OF_CONDUCT.md"
+    ],
+    "github_specific": [
+      ".github/ISSUE_TEMPLATE/bug_report.yml",
+      ".github/ISSUE_TEMPLATE/feature_request.yml",
+      ".github/PULL_REQUEST_TEMPLATE.md",
+      ".github/workflows/ci.yml"
+    ],
+    "optional": [
+      "CHANGELOG.md",
+      "SECURITY.md",
+      ".github/FUNDING.yml"
+    ]
+  }
+}

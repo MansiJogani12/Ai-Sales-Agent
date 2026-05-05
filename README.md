@@ -2,36 +2,40 @@
 
 <div align="center">
 
-![OpenCloser](https://img.shields.io/badge/OpenCloser-AI%20Sales%20Team-6366f1?style=for-the-badge&logo=robot&logoColor=white)
+![OpenCloser](https://img.shields.io/badge/OpenCloser-AI%20Sales%20Platform-6366f1?style=for-the-badge&logo=robot&logoColor=white)
 ![Tauri](https://img.shields.io/badge/Tauri-2.0-FFC131?style=for-the-badge&logo=tauri&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Rust](https://img.shields.io/badge/Rust-Backend-000000?style=for-the-badge&logo=rust&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge)
 
-**An entire AI-powered sales team that lives on your desktop.**  
-From strategy to close — ICP generation, autonomous lead hunting, AI cold calling, real-time objection handling, post-call coaching, and pipeline analytics. All local. All yours.
+[![CI](https://img.shields.io/github/actions/workflow/status/issacops/opencloser-v2/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/issacops/opencloser-v2/actions)
+[![Release](https://img.shields.io/github/v/release/issacops/opencloser-v2?include_prereleases&style=flat-square)](https://github.com/issacops/opencloser-v2/releases)
+[![Stars](https://img.shields.io/github/stars/issacops/opencloser-v2?style=flat-square)](https://github.com/issacops/opencloser-v2/stargazers)
+
+> **Open-source AI sales platform | Desktop CRM | AI Voice Caller | Sales Automation | Built with Tauri + React + Rust + Gemini**
 
 </div>
 
 ---
 
-## 💡 Why OpenCloser?
+## ⚡ What is OpenCloser?
 
-Most "AI sales tools" give you a chatbot and call it a day. OpenCloser gives you **an entire autonomous sales team** — from strategy to close — running natively on your desktop. No monthly SaaS fees. No data leaving your machine. No vendor lock-in.
+OpenCloser is an **open-source, AI-powered sales development platform** that runs entirely on your desktop. It gives you an **autonomous AI sales team**: a strategist to build your ICP, a researcher to hunt leads, a voice caller to dial prospects, a coach to train your rebuttals, and a manager to analyze every call — all running locally. No SaaS fees. No cloud dependency. No data ever leaves your machine.
 
-### The Old Way vs. OpenCloser
-
-| | Traditional Sales Team | OpenCloser |
+| | Traditional Sales Team | **OpenCloser** |
 |---|---|---|
 | **Strategy** | Hire a consultant ($5K+/mo) | AI Strategist generates ICP using SPIN & Challenger in minutes |
 | **Research** | SDR manually Googles leads (hours) | AI Researcher hunts, scores & qualifies leads automatically |
-| **Cold Calling** | SDR dials 50 calls/day, burns out | AI Caller dials with perfect pitch, never tired, never nervous |
-| **Coaching** | Manager listens to call recordings (time-intensive) | AI Coach gives instant post-call analysis with actionable feedback |
+| **Cold Calling** | SDR dials 50 calls/day, burns out | AI Caller dials with perfect pitch, never tired |
+| **Coaching** | Manager reviews recordings (hours) | AI Coach gives instant post-call analysis |
 | **Training** | Roleplay sessions (awkward, infrequent) | AI Sparring Partner available 24/7, adjustable difficulty |
-| **Analytics** | Spreadsheets and gut feelings | Real-time dashboards, sentiment analysis, conversion tracking |
+| **Analytics** | Spreadsheets and gut feelings | Real-time dashboards, sentiment analysis, pipeline tracking |
 | **Cost** | $15K–50K+/mo in salaries | **Free. Open source.** |
 
-### 🎯 Built For
+---
+
+## 🎯 Who It's For
 
 - **Solo founders** who need to sell but can't afford a sales team
 - **Early-stage startups** that want enterprise-level sales ops from day one
@@ -43,31 +47,19 @@ Most "AI sales tools" give you a chatbot and call it a day. OpenCloser gives you
 ## ✨ Your AI Sales Team
 
 ### 🧠 AI Sales Strategist
-- Generates your Ideal Customer Profile (ICP) using SPIN & Challenger frameworks  
-- Asks the right questions during onboarding to deeply understand your market
-- Builds targeted outreach strategies automatically
+Generates your Ideal Customer Profile (ICP) using SPIN & Challenger frameworks. Asks the right questions during onboarding to deeply understand your market. Builds targeted outreach strategies automatically.
 
 ### 🔍 AI Lead Researcher
-- Autonomous lead hunting with scoring and qualification
-- Full local-first CRM with Kanban pipeline management
-- Smart lead scoring and prioritization
+Autonomous lead hunting with scoring and qualification. Full local-first CRM with Kanban pipeline management. Industry-aware demo mode with 5 keyword categories when no API key is configured.
 
 ### 📞 AI Caller (SDR)
-- Real-time AI voice agent powered by Google Gemini
-- Virtual audio bridge for phone integration (Windows Phone Link / Mac Continuity)
-- Live transcription and conversation intelligence
-- Power dialing mode for high-volume outreach
+Real-time AI voice agent powered by Google Gemini (also supports OpenAI Realtime and ElevenLabs ConvAI). Virtual audio bridge for phone integration. Live transcription, sentiment analysis, and objection detection. Power dialing mode for high-volume outreach.
 
 ### 🎯 AI Sales Coach
-- Objection sparring trainer — practice handling tough objections with an AI prospect before real calls
-- Difficulty levels from Rookie to Elite
-- Real-time scoring and feedback on your rebuttals
+Objection sparring trainer with 3 difficulty levels (Rookie, Pro, Elite). Practice handling 12 objection archetypes against an AI prospect. Real-time encouragement and post-session scoring with specific improvement tips.
 
 ### 📊 AI Sales Manager
-- Post-call AI debrief with sentiment analysis and key insights
-- AI-generated follow-up emails
-- Call analytics dashboard with conversion metrics and outcome tracking
-- Pipeline intelligence and forecasting
+Post-call AI debrief with sentiment analysis and key insights. Auto-generated follow-up emails. Call analytics dashboard with conversion metrics. Pipeline intelligence with live Kanban board.
 
 ---
 
@@ -75,33 +67,32 @@ Most "AI sales tools" give you a chatbot and call it a day. OpenCloser gives you
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
+- [Node.js](https://nodejs.org/) (v20+)
 - [Rust](https://www.rust-lang.org/tools/install) (latest stable)
-- [Tauri CLI](https://tauri.app/start/prerequisites/)
+- [Tauri prerequisites](https://tauri.app/start/prerequisites/) (system dependencies per platform)
 
-### Installation
+### Run the Desktop App
 
 ```bash
-# Clone the repository
-git clone https://github.com/issacops/opencloser.git
-cd opencloser
-
-# Install dependencies
+git clone https://github.com/issacops/opencloser-v2.git
+cd opencloser-v2
 npm install
-
-# Run the desktop app
 npm run tauri dev
 ```
 
-### Environment Setup
+### No API Key? No Problem.
 
-Create a `.env` file in the project root:
+OpenCloser works fully in **demo mode** with no API key — 10 realistic seed leads, simulated AI calls, and all features functioning with fallback data. Perfect for evaluation.
 
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-```
+### Enable Real AI
 
-> **Note:** You need a [Google Gemini API key](https://aistudio.google.com/apikey) for the AI features to work.
+Add any of these in Settings → Voice Engine:
+
+| Provider | Key |
+|----------|-----|
+| Google Gemini | `GEMINI_API_KEY` for onboarding, lead hunting, call analysis |
+| OpenAI Realtime | `openai_api_key` for voice calling through the built-in relay |
+| ElevenLabs ConvAI | `elevenlabs_api_key` + Agent ID for the most human-like voice |
 
 ---
 
@@ -109,69 +100,126 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 ```
 opencloser/
-├── src/                    # React frontend
+├── src/                         # React 19 frontend (TypeScript strict mode)
 │   ├── features/
-│   │   ├── crm/           # CRM components (Pipeline, Dashboard, Settings)
-│   │   ├── voice/         # Voice AI (War Room, Post-Call Debrief, Objection Trainer)
-│   │   ├── hunter/        # Lead hunting engine
-│   │   └── onboarding/    # AI onboarding flow (ICP generation)
-│   ├── types/             # TypeScript type definitions
-│   └── ui/                # Shared UI components
-├── src-tauri/             # Rust backend
+│   │   ├── crm/                # Kanban pipeline, Dashboard, Settings, Persona
+│   │   ├── voice/              # War Room, Post-Call Debrief, Objection Trainer
+│   │   ├── hunter/             # Lead hunting engine
+│   │   └── onboarding/         # AI onboarding + ICP generation
+│   ├── stores/                 # 6 Zustand stores (lead, call, persona, etc.)
+│   ├── services/               # Typed Tauri invoke wrappers
+│   ├── test/                   # 35 Vitest tests across 3 suites
+│   └── components/             # AppShell, shared UI
+├── src-tauri/                  # Rust backend
 │   └── src/
-│       ├── ai/            # Gemini AI integration
-│       ├── db/            # SQLite database layer
-│       └── main.rs        # Tauri entry point
-└── server/                # Optional Express server
+│       ├── ai/gemini.rs        # Gemini API + industry-aware demo mocks
+│       ├── db/                 # SQLite schema + 10 seed leads + migrations
+│       ├── relay/              # WebSocket proxy for OpenAI/ElevenLabs
+│       └── lib.rs              # 15 Tauri commands registered
+└── public/
+    └── audio-processor.worklet.js  # Zero-latency PCM capture
 ```
 
 ### Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| **Frontend** | React 18, TypeScript, Tailwind CSS |
-| **Desktop Runtime** | Tauri 2.0 |
-| **Backend** | Rust (native performance) |
-| **Database** | SQLite (local-first, no cloud dependency) |
-| **AI Engine** | Google Gemini (multimodal) |
-| **Voice** | Web Audio API + Virtual Audio Bridge |
+| **Frontend** | React 19, TypeScript strict, Tailwind CSS 3, Vite 6, Zustand 5 |
+| **Desktop Runtime** | Tauri 2.10 |
+| **Backend** | Rust (rusqlite, reqwest, tokio, tokio-tungstenite) |
+| **Database** | SQLite — local-first, zero cloud dependency |
+| **AI** | Google Gemini 2.5 Flash, OpenAI Realtime, ElevenLabs ConvAI |
+| **Voice** | Web Audio API + AudioWorklet (zero-latency PCM capture) |
+| **Tests** | Vitest + React Testing Library (35 tests, 3 suites) |
+| **CI/CD** | GitHub Actions — lint, test, build, multi-platform release |
+
+---
+
+## 📦 Platform Support
+
+| Platform | Architecture | Download |
+|----------|-------------|----------|
+| **macOS** | Apple Silicon (ARM64) | `.dmg` |
+| **macOS** | Intel (x64) | `.dmg` |
+| **Windows** | x86_64 | `.msi` / `.exe` |
+| **Linux** | x86_64 | `.deb` / `.AppImage` / `.rpm` |
+
+All packages available on the [Releases page](https://github.com/issacops/opencloser-v2/releases).
+
+---
+
+## 📊 Project Status
+
+| Metric | |
+|--------|-------|
+| **TypeScript** | Strict mode, 0 errors |
+| **Tests** | 35 passing across 3 suites |
+| **Codebase** | 9,400 lines (TS: 7,572 + Rust: 1,185 + CSS: 637) |
+| **Bundle** | 312KB main + 5 lazy-loaded chunks |
+| **Demo mode** | No API key required — full fallback data |
+
+---
+
+## 🔒 Privacy & Security
+
+- **All data stays local** — SQLite database on your machine, never synced to any server
+- **API keys stored in your browser's localStorage** — never transmitted except to the AI provider you choose
+- **Open source** — every line auditable. MIT license.
+- **Offline capable** — demo mode works with zero internet connectivity
 
 ---
 
 ## 🎙️ Audio Bridge Setup
 
-To enable AI-to-phone calling, OpenCloser uses a virtual audio cable:
+For AI-to-phone calling, OpenCloser uses a virtual audio cable:
 
 - **Windows:** [VB-Cable](https://vb-audio.com/Cable/) (free)
 - **macOS:** [BlackHole](https://existential.audio/blackhole/) (free)
+- **Linux:** Use PulseAudio's `null-sink` module
 
-The built-in Audio Setup Wizard will guide you through the configuration.
+The built-in Audio Setup Wizard guides you through configuration, or skip entirely for VoIP-only mode.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Whether it's bug fixes, new features, or documentation improvements.
+We welcome contributions! See [AGENTS.md](AGENTS.md) for the full developer guide.
+
+```bash
+# Setup
+npm install
+
+# TypeScript check (strict mode)
+npm run lint
+
+# Run tests
+npm test
+
+# Run desktop app
+npm run tauri dev
+```
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch (`git checkout -b feat/amazing-feature`)
+3. Commit your changes with clear messages
+4. Ensure `npm run lint` and `npm test` pass
 5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🙏 Acknowledgments
 
-- [Tauri](https://tauri.app/) — For making native desktop apps accessible
-- [Google Gemini](https://deepmind.google/technologies/gemini/) — For the AI backbone
-- [Lucide Icons](https://lucide.dev/) — For the beautiful icon set
+- [Tauri](https://tauri.app/) — Making native desktop apps accessible to web developers
+- [Google Gemini](https://deepmind.google/technologies/gemini/) — The AI backbone
+- [OpenAI](https://openai.com/) — Realtime voice API
+- [ElevenLabs](https://elevenlabs.io/) — Most human-sounding voice synthesis
+- [Lucide Icons](https://lucide.dev/) — Beautiful icon set
 
 ---
 
@@ -179,6 +227,10 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 **Built with ❤️ for sales teams who want an unfair advantage.**
 
-[Report Bug](https://github.com/issacops/opencloser/issues) · [Request Feature](https://github.com/issacops/opencloser/issues)
+[⭐ Star This Repo](https://github.com/issacops/opencloser-v2/stargazers) · [🐛 Report Bug](https://github.com/issacops/opencloser-v2/issues) · [💡 Request Feature](https://github.com/issacops/opencloser-v2/issues) · [📖 Developer Guide](AGENTS.md)
+
+---
+
+**Keywords:** `ai-sales` `sales-automation` `crm-software` `ai-voice-caller` `desktop-app` `tauri` `open-source-crm` `lead-generation` `cold-calling-software` `sales-coach` `gemini-ai` `react` `typescript` `rust` `sentiment-analysis` `sales-pipeline`
 
 </div>
