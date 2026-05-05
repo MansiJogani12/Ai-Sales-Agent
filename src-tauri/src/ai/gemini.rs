@@ -331,7 +331,7 @@ pub struct ObjectionTrainerRequest {
     pub icp: Option<Value>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct ObjectionTrainerResponse {
     pub role: String,
     pub text: String,
