@@ -19,6 +19,19 @@ export function SettingsView() {
   const [showKeys, setShowKeys] = useState<Record<string, boolean>>({});
   const [testing, setTesting] = useState<Record<string, boolean>>({});
   const [testResults, setTestResults] = useState<Record<string, string | null>>({});
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
+
+  const toggleDarkMode = () => {
+    const next = !darkMode;
+    setDarkMode(next);
+    localStorage.setItem("darkMode", String(next));
+    document.documentElement.classList.toggle("dark", next);
+  };
+
+  useEffect(() => {
+    if (darkMode) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, []);
 
   const testConnection = async (providerId: string, storageKey: string) => {
     setTesting(prev => ({ ...prev, [providerId]: true }));
@@ -106,6 +119,25 @@ export function SettingsView() {
       </div>
 
       <div className="space-y-8 pb-16">
+
+        {/* ── Appearance ── */}
+        <section className="card p-8">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink-muted flex items-center gap-2 mb-4">
+            <Zap className="w-4 h-4 text-coral" /> Appearance
+          </h3>
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-sm font-bold text-ink">Dark Mode</div>
+              <div className="text-[11px] text-ink-muted">Switch between light and dark theme</div>
+            </div>
+            <button
+              onClick={toggleDarkMode}
+              className={`w-12 h-6 rounded-full p-0.5 transition-smooth ${darkMode ? "bg-coral" : "bg-surface-bg border border-surface-border"}`}
+            >
+              <div className={`w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${darkMode ? "translate-x-6" : "translate-x-0"}`} />
+            </button>
+          </div>
+        </section>
 
         {/* ── Voice Engine API Keys ── */}
         <section className="card p-8">

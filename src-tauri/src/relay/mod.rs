@@ -104,7 +104,7 @@ async fn handle_connection(stream: TcpStream) {
     let client_to_provider = tokio::spawn(async move {
         while let Some(msg) = client_rx.next().await {
             match msg {
-                Ok(Message::Binary(data)) | Ok(Message::Text(_)) if !matches!(&msg, Ok(Message::Text(_))) => {
+                Ok(Message::Binary(data)) => {
                     let mut tx = tx_to_provider.lock().await;
                     let _ = tx.send(Message::Binary(data)).await;
                 }

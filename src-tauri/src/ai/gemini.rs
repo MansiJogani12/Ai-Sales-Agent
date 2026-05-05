@@ -356,7 +356,8 @@ pub struct ObjectionTrainerResponse {
 
 #[tauri::command]
 pub async fn objection_trainer_turn(req: ObjectionTrainerRequest) -> Result<ObjectionTrainerResponse, String> {
-    let api_key = req.api_key
+    let api_key_str = req.api_key.clone();
+    let api_key = api_key_str
         .filter(|k| !k.is_empty() && k != "MY_GEMINI_API_KEY")
         .or_else(|| env::var("GEMINI_API_KEY").ok())
         .unwrap_or_default();

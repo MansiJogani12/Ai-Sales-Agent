@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import {
-  Mic2, BookOpen, Save, Volume2,
+  Bot, Mic2, BookOpen, Save, Volume2, Play,
   Activity, Zap, ChevronDown, Brain, MessageSquare, Eye, Check
 } from "lucide-react";
 import { AIPersona, DEFAULT_PERSONA, SalesFramework, VoicePreset, VOICE_PRESETS } from "../../../types/persona";
@@ -363,6 +363,36 @@ export function AIPersonaBuilder({ initialPersona, onSave }: AIPersonaBuilderPro
                 <pre className="text-[10px] font-mono text-ink-muted bg-surface-bg rounded-xl p-4 overflow-y-auto h-48 leading-relaxed border border-surface-border whitespace-pre-wrap">
                   {promptPreview}
                 </pre>
+              </div>
+            )}
+          </section>
+
+          {/* Voice Preview */}
+          <section className="card overflow-hidden">
+            <button
+              onClick={() => setShowPromptPreview(!showPromptPreview)}
+              className="w-full flex items-center justify-between p-5 text-left hover:bg-surface-bg/50 transition-smooth"
+            >
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink-muted flex items-center gap-2">
+                <Play className="w-4 h-4 text-coral" /> Voice Preview
+              </span>
+              <ChevronDown className={`w-4 h-4 text-ink-muted transition-transform ${showPromptPreview ? "rotate-180" : ""}`} />
+            </button>
+            {showPromptPreview && (
+              <div className="px-5 pb-5">
+                <div className="bg-surface-bg rounded-xl p-4 border border-surface-border space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-coral flex items-center justify-center shrink-0">
+                      <Bot className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="text-[13px] text-ink-secondary leading-relaxed">
+                      "Hi there! I'm calling from OpenCloser. I noticed your team might benefit from what we're doing — would you have 2 minutes to hear how we're helping companies like yours?"
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-ink-muted text-center font-mono">
+                    {persona.emotionalModulation.energy} energy · {persona.emotionalModulation.empathy} empathy · {persona.emotionalModulation.formality} formality · {persona.framework}
+                  </p>
+                </div>
               </div>
             )}
           </section>

@@ -75,6 +75,8 @@ export function KanbanBoard() {
   const [allCallLogs, setAllCallLogs] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [scoreFilter, setScoreFilter] = useState(0);
+  const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
+  const [globalSearch, setGlobalSearch] = useState("");
   const [icpData, setIcpData] = useState<ICP | null>(null);
   const [persona, setPersona] = useState<AIPersona | null>(null);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
@@ -287,9 +289,20 @@ export function KanbanBoard() {
             )}
 
             <div className="flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100">
-              <button className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 opacity-50" disabled aria-label="Search leads">
+              <button className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-50 transition-colors" onClick={() => setGlobalSearchOpen(!globalSearchOpen)} aria-label="Search leads">
                 <Search className="w-5 h-5" />
               </button>
+              {globalSearchOpen && (
+                <input
+                  type="text"
+                  value={globalSearch}
+                  onChange={(e) => { setGlobalSearch(e.target.value); setSearchQuery(e.target.value); }}
+                  onKeyDown={(e) => { if (e.key === "Escape") { setGlobalSearchOpen(false); setGlobalSearch(""); setSearchQuery(""); } }}
+                  placeholder="Search by name or company..."
+                  className="bg-transparent border-none outline-none text-sm font-medium text-gray-900 w-48 placeholder:text-gray-400"
+                  autoFocus
+                />
+              )}
               <button className="w-10 h-10 flex items-center justify-center rounded-full text-gray-400 opacity-50" disabled aria-label="Notifications">
                 <Bell className="w-5 h-5" />
               </button>

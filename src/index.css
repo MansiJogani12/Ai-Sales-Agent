@@ -592,3 +592,46 @@
 .glow-emerald { box-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
 .glow-amber { box-shadow: 0 0 12px rgba(245, 158, 11, 0.3); }
 .glow-purple { box-shadow: 0 0 12px rgba(168, 85, 247, 0.3); }
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE
+   ═══════════════════════════════════════════════════════════ */
+html.dark {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-card: #1a1a1a;
+  --bg-elevated: #1f1f1f;
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --border-focus: #FF5C39;
+  --accent-coral: #FF5C39;
+  --accent-coral-light: rgba(255, 92, 57, 0.1);
+  --accent-dark: #e5e5e5;
+  --text-primary: #e5e5e5;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-coral: 0 4px 20px rgba(255, 92, 57, 0.3);
+}
+html.dark body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+html.dark .card {
+  background: var(--bg-card);
+  border-color: var(--border-default);
+}
+html.dark .btn-ghost {
+  background: var(--bg-card);
+  border-color: var(--border-default);
+  color: var(--text-secondary);
+}
+html.dark .input-field {
+  background: var(--bg-card);
+  border-color: var(--border-default);
+  color: var(--text-primary);
+}
+html.dark .input-field::placeholder {
+  color: var(--text-muted);
+}
