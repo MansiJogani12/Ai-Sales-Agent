@@ -1,4 +1,3 @@
-import React from "react";
 import { CreditCard, CheckCircle2 } from "lucide-react";
 
 export function BillingView() {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, MapPin, Filter, Play, Loader2, Database, Globe, Linkedin, Twitter, Download } from "lucide-react";
+import { Search, MapPin, Filter, Play, Loader2, Database, Globe, Download } from "lucide-react";
 import { invoke } from "@tauri-apps/api/core";
 import { ICP } from "../../../types";
 import { ToastType } from "../../../ui/components/Toast";

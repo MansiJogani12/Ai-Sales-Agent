@@ -1,4 +1,3 @@
-import React from "react";
 import { LineChart, Users, DollarSign, Activity } from "lucide-react";
 
 export function MarketIntelView() {
