@@ -71,7 +71,7 @@ export function KanbanBoard() {
 
   const [appState, setAppState] = useState<
     "onboarding" | "icp_review" | "audio_setup" | "persona_setup" | "home" | "dashboard" | "hunter" | "call_logs" | "settings" | "persona" | "lead_detail" | "trainer" | "welcome"
-  >("onboarding");
+  >("home");
   const [allCallLogs, setAllCallLogs] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [scoreFilter, setScoreFilter] = useState(0);
@@ -100,15 +100,6 @@ export function KanbanBoard() {
   };
 
   useEffect(() => {
-    // If we're forcing demo mode or there are no API keys, clear data to force restart
-    const hasAnyKey = localStorage.getItem("gemini_api_key") || localStorage.getItem("openai_api_key") || localStorage.getItem("elevenlabs_api_key");
-    if (!hasAnyKey) {
-        localStorage.removeItem("hasCompletedOnboarding");
-        localStorage.removeItem("hasCompletedAudioSetup");
-        localStorage.removeItem("icp_data");
-        // Keep ai_persona so the form is somewhat pre-filled or uses defaults safely
-    }
-
     const completed = localStorage.getItem("hasCompletedOnboarding");
     if (completed) {
       setAppState("home");

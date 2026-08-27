@@ -345,10 +345,19 @@ export class DemoCallerEngine extends CallerEngine {
         if (this.currentIndex < this.lines.length) {
           const line = this.lines[this.currentIndex++];
           this.callbacks.onTranscript(this.makeTranscriptLine(line.role, line.text));
+          
+          // Use browser's native Text-to-Speech for the AI voice in demo mode
+          if (line.role === "model" && typeof window !== 'undefined' && 'speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(line.text);
+            utterance.rate = 1.1; // Slightly faster for a natural feel
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+          }
+          
         } else {
           this.disconnect();
         }
-      }, 4000); // Send a script line every 4 seconds
+      }, 5000); // Increased slightly to give TTS time to finish speaking
       
     }, 1500);
   }
@@ -359,6 +368,9 @@ export class DemoCallerEngine extends CallerEngine {
 
   disconnect(): void {
     if (this.interval) clearInterval(this.interval);
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
     this.setState("ended");
   }
 }

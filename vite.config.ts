@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+        '@tauri-apps/api/core': path.resolve(__dirname, 'src/mock-tauri.ts'),
       },
     },
     server: {

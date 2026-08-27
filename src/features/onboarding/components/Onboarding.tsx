@@ -77,8 +77,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {
           id: Date.now().toString(),
           role: "assistant",
-          content:
-            "Connection to intelligence core disrupted. Please re-transmit.",
+          content: `Error: ${error}`,
         },
       ]);
     } finally {
