@@ -27,6 +27,9 @@ import {
   Zap,
   Bell,
   ChevronDown,
+  LineChart,
+  CreditCard,
+  Shield,
 } from "lucide-react";
 
 const WarRoom = React.lazy(() => import("../../voice/components/WarRoom").then(m => ({ default: m.WarRoom })));
@@ -62,9 +65,12 @@ const SIDEBAR_TOP = [
   { icon: Target, state: "hunter", label: "Lead Researcher" },
   { icon: Bot, state: "persona", label: "AI Caller" },
   { icon: Swords, state: "trainer", label: "Sales Coach" },
+  { icon: LineChart, state: "market_intel", label: "Market Intelligence" },
 ];
 
 const SIDEBAR_BOTTOM = [
+  { icon: CreditCard, state: "billing", label: "Billing & Plans" },
+  { icon: Shield, state: "admin", label: "Admin Portal" },
   { icon: Settings, state: "settings", label: "Settings" },
 ];
 
