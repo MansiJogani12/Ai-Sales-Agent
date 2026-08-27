@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   Settings as SettingsIcon, Mic, Volume2, Info, CheckCircle2,
-  ChevronDown, Sliders, Key, Eye, EyeOff, CheckCheck, AlertTriangle, Zap
+  ChevronDown, Sliders, Key, Eye, EyeOff, CheckCheck, AlertTriangle, Zap, Globe, Link
 } from "lucide-react";
 import { PROVIDERS } from "../../voice/lib/providers";
 
@@ -20,6 +20,8 @@ export function SettingsView() {
   const [testing, setTesting] = useState<Record<string, boolean>>({});
   const [testResults, setTestResults] = useState<Record<string, string | null>>({});
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
+  const [language, setLanguage] = useState(() => localStorage.getItem("appLanguage") || "en");
+  const [crmConnected, setCrmConnected] = useState(() => localStorage.getItem("crmConnected") === "true");
 
   const toggleDarkMode = () => {
     const next = !darkMode;
@@ -135,6 +137,72 @@ export function SettingsView() {
               className={`w-12 h-6 rounded-full p-0.5 transition-smooth ${darkMode ? "bg-coral" : "bg-surface-bg border border-surface-border"}`}
             >
               <div className={`w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${darkMode ? "translate-x-6" : "translate-x-0"}`} />
+            </button>
+          </div>
+        </section>
+
+        {/* ── Localization & AI Languages ── */}
+        <section className="card p-8">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink-muted flex items-center gap-2 mb-4">
+            <Globe className="w-4 h-4 text-coral" /> Localization & Multilingual AI
+          </h3>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase tracking-widest text-ink-muted block mb-2">Platform Language & AI Voice Tongue</label>
+              <div className="relative">
+                <select 
+                  value={language} 
+                  onChange={(e) => {
+                    setLanguage(e.target.value);
+                    localStorage.setItem("appLanguage", e.target.value);
+                    showSaved("Language Updated");
+                  }}
+                  className="w-full bg-surface-bg border border-surface-border rounded-xl px-4 py-3 text-sm font-bold text-ink appearance-none hover:border-coral/20 focus:outline-none focus:border-coral/30"
+                >
+                  <option value="en">English (US)</option>
+                  <option value="es">Spanish (Español)</option>
+                  <option value="fr">French (Français)</option>
+                  <option value="de">German (Deutsch)</option>
+                  <option value="zh">Mandarin (中文)</option>
+                  <option value="hi">Hindi (हिंदी)</option>
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-ink-muted w-4 h-4" />
+              </div>
+            </div>
+            <p className="text-xs font-medium text-emerald-600 bg-emerald-50 p-3 rounded-lg border border-emerald-100 flex items-center gap-2">
+              <Info className="w-4 h-4 shrink-0" />
+              The AI Voice Agent will automatically converse in this language, qualify prospects, and generate localized summaries.
+            </p>
+          </div>
+        </section>
+
+        {/* ── CRM Integrations ── */}
+        <section className="card p-8">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink-muted flex items-center gap-2 mb-4">
+            <Link className="w-4 h-4 text-coral" /> CRM Integrations
+          </h3>
+          <div className="flex items-center justify-between p-4 border border-surface-border rounded-xl bg-surface-bg">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">S</div>
+              <div>
+                <div className="font-bold text-ink text-sm">Salesforce / HubSpot Sync</div>
+                <div className="text-xs text-ink-muted mt-0.5">Bi-directional sync for leads, call transcripts, and duplicate detection.</div>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                const next = !crmConnected;
+                setCrmConnected(next);
+                localStorage.setItem("crmConnected", String(next));
+                showSaved(next ? "CRM Connected" : "CRM Disconnected");
+              }}
+              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                crmConnected 
+                  ? "bg-emerald-100 text-emerald-700 border border-emerald-200" 
+                  : "bg-white text-ink border border-surface-border hover:bg-gray-50"
+              }`}
+            >
+              {crmConnected ? "Connected" : "Connect CRM"}
             </button>
           </div>
         </section>

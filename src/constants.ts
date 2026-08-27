@@ -24,6 +24,9 @@ export const ROUTES = {
   PERSONA: "persona",
   LEAD_DETAIL: "lead_detail",
   TRAINER: "trainer",
+  MARKET_INTEL: "market_intel",
+  BILLING: "billing",
+  ADMIN: "admin",
 } as const;
 
 export const LEAD_STATUSES = ["Discovery", "Outbound Call", "Audit Requested", "Closed"] as const;
@@ -42,9 +45,12 @@ export const SIDEBAR_TOP = [
   { icon: "Target", state: "hunter", label: "Lead Researcher" },
   { icon: "Bot", state: "persona", label: "AI Caller" },
   { icon: "Swords", state: "trainer", label: "Sales Coach" },
+  { icon: "LineChart", state: "market_intel", label: "Market Intelligence" },
 ] as const;
 
 export const SIDEBAR_BOTTOM = [
+  { icon: "CreditCard", state: "billing", label: "Billing & Plans" },
+  { icon: "Shield", state: "admin", label: "Admin Portal" },
   { icon: "Settings", state: "settings", label: "Settings" },
 ] as const;
 

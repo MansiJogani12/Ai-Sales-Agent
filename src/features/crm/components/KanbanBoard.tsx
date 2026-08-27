@@ -9,6 +9,9 @@ import { LeadHunter } from "../../hunter/components/LeadHunter";
 import { CallLogsView } from "./CallLogsView";
 import { SettingsView } from "./SettingsView";
 import { DashboardHome } from "./DashboardHome";
+import { MarketIntelView } from "./MarketIntelView";
+import { BillingView } from "./BillingView";
+import { AdminView } from "./AdminView";
 import { AIPersona } from "../../../types/persona";
 import { Toast, ToastMessage, ToastType } from "../../../ui/components/Toast";
 import {
@@ -70,7 +73,7 @@ export function KanbanBoard() {
   const [loading, setLoading] = useState(true);
 
   const [appState, setAppState] = useState<
-    "onboarding" | "icp_review" | "audio_setup" | "persona_setup" | "home" | "dashboard" | "hunter" | "call_logs" | "settings" | "persona" | "lead_detail" | "trainer" | "welcome"
+    "onboarding" | "icp_review" | "audio_setup" | "persona_setup" | "home" | "dashboard" | "hunter" | "call_logs" | "settings" | "persona" | "lead_detail" | "trainer" | "welcome" | "market_intel" | "billing" | "admin"
   >("home");
   const [allCallLogs, setAllCallLogs] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -458,6 +461,10 @@ export function KanbanBoard() {
           {appState === "call_logs" && <CallLogsView />}
 
           {appState === "settings" && <SettingsView />}
+          
+          {appState === "market_intel" && <MarketIntelView />}
+          {appState === "billing" && <BillingView />}
+          {appState === "admin" && <AdminView />}
 
           {appState === "home" && (
             <DashboardHome

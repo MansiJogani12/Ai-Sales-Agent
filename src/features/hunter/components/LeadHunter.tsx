@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, MapPin, Filter, Play, Loader2, Database } from "lucide-react";
+import { Search, MapPin, Filter, Play, Loader2, Database, Globe, Linkedin, Twitter, Download } from "lucide-react";
 import { invoke } from "@tauri-apps/api/core";
 import { ICP } from "../../../types";
 import { ToastType } from "../../../ui/components/Toast";
@@ -13,6 +13,7 @@ interface LeadHunterProps {
 export function LeadHunter({ icp, onLeadsAdded, addToast }: LeadHunterProps) {
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
+  const [sourcePlatform, setSourcePlatform] = useState("LinkedIn");
   const [isScraping, setIsScraping] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
@@ -26,11 +27,16 @@ export function LeadHunter({ icp, onLeadsAdded, addToast }: LeadHunterProps) {
     try {
       const leads: any = await invoke('simulate_lead_scraping', { query, location, icp });
       
-      const formattedLeads = leads.map((lead: any) => ({
+      const formattedLeads = leads.map((lead: any, index: number) => ({
         id: `lead_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         name: lead.name,
         company: lead.company,
         phone: lead.phone,
+        email: `${lead.name.split(' ')[0].toLowerCase()}@${lead.company.toLowerCase().replace(/\s+/g, '')}.com`,
+        jobTitle: index % 2 === 0 ? "Founder & CEO" : "VP of Sales",
+        industry: "Technology",
+        companySize: "10-50",
+        source: sourcePlatform,
         score: lead.score
       }));
 
@@ -118,6 +124,19 @@ export function LeadHunter({ icp, onLeadsAdded, addToast }: LeadHunterProps) {
                 required
               />
             </div>
+            <div className="w-48 relative group">
+              <Globe className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-[#A1A1AA] group-focus-within:text-[#FF5C39] transition-colors" />
+              <select
+                value={sourcePlatform}
+                onChange={(e) => setSourcePlatform(e.target.value)}
+                className="w-full bg-[#F4F5F7] border border-transparent rounded-2xl pl-12 pr-4 py-[18px] text-[14px] text-[#171717] font-medium focus:outline-none focus:bg-white focus:border-[#FF5C39] transition-all duration-200 shadow-inner hover:border-[#E0E0E0] appearance-none"
+              >
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="X">X (Twitter)</option>
+                <option value="Web">Public Web</option>
+                <option value="Freelance">Freelance Platforms</option>
+              </select>
+            </div>
             <button
               type="submit"
               disabled={isScraping || !query.trim() || !location.trim()}
@@ -181,6 +200,9 @@ export function LeadHunter({ icp, onLeadsAdded, addToast }: LeadHunterProps) {
                 <span className="text-[12px] font-bold text-[#10B981] bg-[#ECFDF5] px-3 py-1.5 rounded-full border border-[#10B981]/20">
                   {results.length} Leads Added to CRM
                 </span>
+                <button className="flex items-center gap-1.5 text-sm font-bold text-gray-600 hover:text-gray-900 ml-4">
+                  <Download className="w-4 h-4" /> Export CSV
+                </button>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {results.map((lead, i) => (
@@ -191,18 +213,26 @@ export function LeadHunter({ icp, onLeadsAdded, addToast }: LeadHunterProps) {
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="font-bold text-[#171717] text-[15px] group-hover:text-[#FF5C39] transition-colors">
-                          {lead.name}
+                          {lead.name} <span className="text-xs font-normal text-gray-500 ml-2">{lead.jobTitle}</span>
                         </div>
                         <div className="text-[13px] text-[#A1A1AA] font-semibold mt-0.5">
-                          {lead.company}
+                          {lead.company} • {lead.companySize} employees
                         </div>
                       </div>
                       <div className="text-[11px] font-mono font-bold text-[#10B981] bg-[#ECFDF5] px-2.5 py-1 rounded border border-[#10B981]/20">
                         Score: {lead.score}
                       </div>
                     </div>
-                    <div className="text-[13px] font-mono font-bold text-[#6B7280] bg-[#F4F5F7] px-3 py-2 rounded-xl border border-[#F0F0F0] inline-block self-start">
-                      {lead.phone}
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="text-[12px] font-mono font-bold text-[#6B7280] bg-[#F4F5F7] px-2 py-1 rounded border border-[#F0F0F0]">
+                        {lead.email}
+                      </div>
+                      <div className="text-[12px] font-mono font-bold text-[#6B7280] bg-[#F4F5F7] px-2 py-1 rounded border border-[#F0F0F0]">
+                        {lead.phone}
+                      </div>
+                      <div className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full uppercase ml-auto">
+                        Source: {lead.source}
+                      </div>
                     </div>
                   </div>
                 ))}
